@@ -42,6 +42,7 @@ def bubble(request):
 
 def control_systems_search(request):
     ids = filter(bool, request.GET.getlist('ids', []))
+    ids += filter(bool, request.GET.getlist('ids[]', []))
     data = [
         system_dict(s)
         for s in System.objects.all().control_systems.filter(id__in=ids)]
