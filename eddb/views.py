@@ -27,6 +27,10 @@ def json_response(data):
     return HttpResponse(json.dumps(data), content_type='application/json')
 
 
+def get_system(request, system_id):
+    return json_response(system_dict(System.objects.get(system_id=system_id), deep=True))
+
+
 def search(request):
     name = request.GET['name']
     return json_response([system_dict(System.objects.get_by_name(name), deep=True)])

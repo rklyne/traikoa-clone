@@ -20,5 +20,6 @@ urlpatterns = [
     url(r'^powers/', views.powers),
     url(r'^systems/bubble/', views.bubble),
     url(r'^systems/search/', views.search),
+    url(r'^systems/(?P<system_id>[0-9]+)/', views.get_system),
     url(r'^control_systems/search/', views.control_systems_search),
 ]
