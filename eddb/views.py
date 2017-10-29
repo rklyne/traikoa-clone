@@ -138,10 +138,9 @@ def system_dict(system, deep=False):
     del d['_state']
     d['eddb_id'] = system.system_id
     # .. TODO: Add exploiting control systems
-    if deep:
-        d.setdefault(
-            'exploitations',
-            [system_dict(s) for s in System.objects.exploiting(system)])
+    d.setdefault(
+        'exploitations',
+        list(System.objects.exploiting(system).values_list('system_id', flat=True)))
     # .. TODO: Add stations
     d.setdefault('stations', [])
     d['position'] = {
