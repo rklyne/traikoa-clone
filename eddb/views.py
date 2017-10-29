@@ -14,7 +14,7 @@ def json_response(data):
 
 def search(request):
     name = request.GET['name']
-    return json_response([system_dict(System.objects.get_by_name(name))])
+    return json_response([system_dict(System.objects.get_by_name(name), deep=True)])
 
 
 def bubble(request):
@@ -25,7 +25,15 @@ def bubble(request):
     return json_response(data)
 
 
-def system_dict(system):
+def control_systems_search(request):
+    ids = request.GET.getlist('ids', [])
+    data = [
+        system_dict(s)
+        for s in System.objects.all().control_systems.filter(id__in=ids)]
+    return json_response(data)
+
+
+def system_dict(system, deep=False):
     """
     # expected output
 
@@ -130,7 +138,10 @@ def system_dict(system):
     del d['_state']
     d['eddb_id'] = system.system_id
     # .. TODO: Add exploiting control systems
-    d.setdefault('exploitations', [])
+    if deep:
+        d.setdefault(
+            'exploitations',
+            [system_dict(s) for s in System.objects.exploiting(system)])
     # .. TODO: Add stations
     d.setdefault('stations', [])
     d['position'] = {

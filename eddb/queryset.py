@@ -16,3 +16,10 @@ class SystemQueryset(QuerySet):
             (F('y') - system.y) ** 2 +
             (F('z') - system.z) ** 2
             ) ** (0.5)).filter(distance__lte=range)
+
+    @property
+    def control_systems(self):
+        return self.filter(power_state='Control')
+
+    def exploiting(self, system):
+        return self.control_systems.neighbours_of(system, range=15)
