@@ -18,5 +18,5 @@ from . import views
 
 urlpatterns = [
     url(r'^bubble/', views.bubble),
-    url(r'^search/', views.search),
+    url(r'^system/search/', views.search),
 ]

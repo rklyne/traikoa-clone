@@ -124,7 +124,7 @@ def system_dict(system):
     d = system.__dict__.copy()
     d['cc_value'] = system.cc
     del d['_state']
-    d['eddb_id'] = d.system_id
+    d['eddb_id'] = system.system_id
     d.setdefault('exploitations', [])
     return d
 
