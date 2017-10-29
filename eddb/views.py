@@ -60,7 +60,18 @@ def powers(request):
 
 def get_power(request, power_id):
     name = POWERS[power_id-1]
-    data = {"name": name, 'id': power_id}
+    data = {
+        "name": name,
+        'id': power_id,
+        'control_system_ids': list(
+            System.objects.all().control_systems.
+            filter(power=name).values_list('system_id', flat=True)),
+        'superfaction': '?',
+        'income': 0,
+        'overhead': 0,
+        'default_upkeep': 0,
+        'predicted': 0,
+        }
     return json_response(data)
 
 
