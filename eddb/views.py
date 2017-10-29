@@ -54,7 +54,13 @@ def control_systems_search(request):
 
 
 def powers(request):
-    data = [{"name": name} for name in POWERS]
+    data = [{"name": name, "power_id": id} for (id, name) in enumerate(POWERS, 1)]
+    return json_response(data)
+
+
+def get_power(request, power_id):
+    name = POWERS[power_id-1]
+    data = {"name": name, 'id': power_id}
     return json_response(data)
 
 
