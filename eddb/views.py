@@ -14,7 +14,7 @@ def json_response(data):
 
 def search(request):
     name = request.GET['name']
-    return json_response(system_dict(System.objects.get_by_name(name)))
+    return json_response([system_dict(System.objects.get_by_name(name))])
 
 
 def bubble(request):
@@ -26,7 +26,11 @@ def bubble(request):
 
 
 def system_dict(system):
-    expected_output = """
+    """
+    # expected output
+
+
+
     {
       "id": 1,
       "eddb_id": 1,
@@ -127,4 +131,3 @@ def system_dict(system):
     d['eddb_id'] = system.system_id
     d.setdefault('exploitations', [])
     return d
-
