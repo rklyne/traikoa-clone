@@ -130,4 +130,9 @@ def system_dict(system):
     del d['_state']
     d['eddb_id'] = system.system_id
     d.setdefault('exploitations', [])
+    d['position'] = {
+        "x": d["x"],
+        "y": d["y"],
+        "z": d["z"],
+        }
     return d
