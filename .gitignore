@@ -1,0 +1,6 @@
+venv
+db.sqlite
+*.sw[a-p]
+*.pyc
+db.sqlite3
+systems_populated.json
