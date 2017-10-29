@@ -8,6 +8,21 @@ from django.http import HttpResponse
 from eddb.models import System
 
 
+POWERS = [
+        u'Felicia Winters',
+        u'Pranav Antal',
+        u'Edmund Mahon',
+        u'Archon Delaine',
+        u'LiYong-Rui',
+        u'Zachary Hudson',
+        u'Denton Patreus',
+        u'Arissa Lavigny-Duval',
+        u'Yuri Grom',
+        u'Zemina Torval',
+        u'Aisling Duval',
+        ]
+
+
 def json_response(data):
     return HttpResponse(json.dumps(data), content_type='application/json')
 
@@ -34,19 +49,7 @@ def control_systems_search(request):
 
 
 def powers(request):
-    data = [{"name": name} for name in [
-        u'Felicia Winters',
-        u'Pranav Antal',
-        u'Edmund Mahon',
-        u'Archon Delaine',
-        u'LiYong-Rui',
-        u'Zachary Hudson',
-        u'Denton Patreus',
-        u'Arissa Lavigny-Duval',
-        u'Yuri Grom',
-        u'Zemina Torval',
-        u'Aisling Duval',
-        ]]
+    data = [{"name": name} for name in POWERS]
     return json_response(data)
 
 
@@ -160,6 +163,8 @@ def system_dict(system, deep=False):
         list(System.objects.exploiting(system).values_list('system_id', flat=True)))
     # .. TODO: Add stations
     d.setdefault('stations', [])
+    if system.power:
+        d['power_id'] = POWERS.index(system.power) + 1
     d['position'] = {
         "x": d["x"],
         "y": d["y"],
