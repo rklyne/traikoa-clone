@@ -17,6 +17,6 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^bubble/', views.bubble),
+    url(r'^systems/bubble/', views.bubble),
     url(r'^systems/search/', views.search),
 ]
