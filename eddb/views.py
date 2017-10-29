@@ -33,6 +33,23 @@ def control_systems_search(request):
     return json_response(data)
 
 
+def powers(request):
+    data = [{"name": name} for name in [
+        u'Felicia Winters',
+        u'Pranav Antal',
+        u'Edmund Mahon',
+        u'Archon Delaine',
+        u'LiYong-Rui',
+        u'Zachary Hudson',
+        u'Denton Patreus',
+        u'Arissa Lavigny-Duval',
+        u'Yuri Grom',
+        u'Zemina Torval',
+        u'Aisling Duval',
+        ]]
+    return json_response(data)
+
+
 def system_dict(system, deep=False):
     """
     # expected output
