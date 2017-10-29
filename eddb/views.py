@@ -129,7 +129,10 @@ def system_dict(system):
     d['cc_value'] = system.cc
     del d['_state']
     d['eddb_id'] = system.system_id
+    # .. TODO: Add exploiting control systems
     d.setdefault('exploitations', [])
+    # .. TODO: Add stations
+    d.setdefault('stations', [])
     d['position'] = {
         "x": d["x"],
         "y": d["y"],
