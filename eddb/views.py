@@ -59,6 +59,7 @@ def powers(request):
 
 
 def get_power(request, power_id):
+    power_id = int(power_id)
     name = POWERS[power_id-1]
     data = {
         "name": name,
