@@ -13,7 +13,7 @@ POWERS = [
         u'Pranav Antal',
         u'Edmund Mahon',
         u'Archon Delaine',
-        u'LiYong-Rui',
+        u'Li Yong-Rui',
         u'Zachary Hudson',
         u'Denton Patreus',
         u'Arissa Lavigny-Duval',
