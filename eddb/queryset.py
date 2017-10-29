@@ -11,6 +11,7 @@ class SystemQueryset(QuerySet):
         return systems[0]
 
     def neighbours_of(self, system, range=15):
+        range = float(range)
         return self.annotate(distance_squared=(
             (F('x') - system.x) ** 2 +
             (F('y') - system.y) ** 2 +
