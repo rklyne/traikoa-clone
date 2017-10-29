@@ -1,5 +1,4 @@
 import json
-from pprint import pprint
 
 from django.core.management.base import BaseCommand
 
@@ -46,8 +45,8 @@ class Command(BaseCommand):
             ]
 
         for system_data in data:
-            pprint(system_data)
-            pprint(system_data.keys())
+            print system_data.get('name')
+            system_data['population'] = system_data.get('population') or 0
             system, is_new_system = System.objects.get_or_create(
                     system_id=system_data['id'],
                     defaults=filter_dict(system_data, keys=system_keys))
