@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^systems/search/', views.search),
     url(r'^systems/(?P<system_id>[0-9]+)/', views.get_system),
     url(r'^control_systems/search/', views.control_systems_search),
+    url(r'^control_systems/(?P<system_id>[0-9]+)/', views.get_system),
 ]
