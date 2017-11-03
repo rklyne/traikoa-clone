@@ -9,9 +9,9 @@ from .queryset import SystemQueryset
 
 class System(models.Model):
     system_id = models.IntegerField(db_index=True)
-    x = models.IntegerField(db_index=True)
-    y = models.IntegerField(db_index=True)
-    z = models.IntegerField(db_index=True)
+    x = models.FloatField(db_index=True)
+    y = models.FloatField(db_index=True)
+    z = models.FloatField(db_index=True)
     name = models.CharField(max_length=255, db_index=True)
     allegiance = models.CharField(max_length=50, null=True, blank=True)
     allegiance_id = models.IntegerField(null=True, blank=True)
