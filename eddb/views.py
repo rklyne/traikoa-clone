@@ -180,12 +180,10 @@ def system_dict(system, deep=False):
     d['cc_value'] = system.cc
     del d['_state']
     d['eddb_id'] = system.system_id
-    # .. TODO: Add exploiting control systems
     d.setdefault(
         'exploitations',
         list(System.objects.exploiting(system).values_list('system_id', flat=True)))
-    # .. TODO: Add stations
-    d.setdefault('stations', [])
+    d['stations'] = map(station_json, system.station_set.all())
     if system.power:
         d['power_id'] = POWERS.index(system.power) + 1
     d['position'] = {
@@ -194,3 +192,13 @@ def system_dict(system, deep=False):
         "z": d["z"],
         }
     return d
+
+def station_json(station):
+    return {
+      "id": station.id,
+      "eddb_id": station.station_id,
+      "name": station.name,
+      "is_planetary": station.is_planetary,
+      "pad_size": station.max_landing_pad_size,
+      "distance": station.distance_to_star,
+    }
