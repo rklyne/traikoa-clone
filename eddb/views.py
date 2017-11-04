@@ -33,7 +33,10 @@ def get_system(request, system_id):
 
 def search(request):
     name = request.GET['name']
-    return json_response([system_dict(System.objects.get_by_name(name), deep=True)])
+    try:
+        return json_response([system_dict(System.objects.get_by_name(name), deep=True)])
+    except System.DoesNotExist:
+        return json_response(None)
 
 
 def bubble(request):

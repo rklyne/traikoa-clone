@@ -7,7 +7,7 @@ class SystemQueryset(QuerySet):
             self.filter(name__icontains=name),
             key=lambda system: len(system.name))
         if not systems:
-            raise ValueError("System '{}' not found".format(name))
+            raise self.model.DoesNotExist
         return systems[0]
 
     def neighbours_of(self, system, range=15):
