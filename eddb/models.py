@@ -44,3 +44,31 @@ class System(models.Model):
         return self.name
 
 
+class Station(models.Model):
+    system = models.ForeignKey(System)
+    station_id = models.IntegerField(db_index=True)
+    distance_to_star = models.FloatField(db_index=True, null=True, blank=True)
+    name = models.CharField(max_length=255, db_index=True)
+    max_landing_pad_size = models.CharField(max_length=8, blank=True, null=True)
+    allegiance = models.CharField(max_length=50, null=True, blank=True)
+    allegiance_id = models.IntegerField(null=True, blank=True)
+    controlling_minor_faction_id = models.IntegerField(null=True, blank=True)
+    government = models.CharField(max_length=50, null=True, blank=True)
+    government_id = models.IntegerField(null=True, blank=True)
+    has_blackmarket = models.BooleanField()
+    has_commodities = models.BooleanField()
+    has_docking = models.BooleanField()
+    has_market = models.BooleanField()
+    has_outfitting = models.BooleanField()
+    has_rearm = models.BooleanField()
+    has_refuel = models.BooleanField()
+    has_repair = models.BooleanField()
+    has_shipyard = models.BooleanField()
+    is_planetary = models.BooleanField()
+    state = models.CharField(max_length=50, null=True, blank=True)
+    state_id = models.IntegerField(null=True, blank=True)
+    type = models.CharField(max_length=50, null=True, blank=True)
+    type_id = models.IntegerField(null=True, blank=True)
+
+    def __unicode__(self):
+        return self.name
