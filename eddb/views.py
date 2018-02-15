@@ -186,6 +186,8 @@ def system_dict(system, deep=False):
     d.setdefault(
         'exploitations',
         list(System.objects.exploiting(system).values_list('system_id', flat=True)))
+    if len(d['exploitations']) > 1:
+        d['contested'] = True
     d['stations'] = map(station_json, system.station_set.all())
     if system.power:
         d['power_id'] = POWERS.index(system.power) + 1
